@@ -61,9 +61,36 @@ class API {
     }
     
     static func getUserInfo(completion: @escaping (Error?)->Void) {
-        // This function is called right after the user logs in successfully
-        // It uses the user's key to retreive the rest of the information (firstName and lastName) and saves it to be used later on posting a location
-        // Hint: print out the retreived data in order to find out how you'll traverse the JSON object to get the firstName and lastName
+        guard let url = URL(string: "\(APIConstants.PUBLIC_USER)\(self.userInfo.key ?? "")") else {
+            completion("Supplied url is invalid" as? Error)
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue(APIConstants.HeaderValues.PARSE_APP_ID, forHTTPHeaderField: APIConstants.HeaderKeys.PARSE_APP_ID)
+        request.addValue(APIConstants.HeaderValues.PARSE_API_KEY, forHTTPHeaderField: APIConstants.HeaderKeys.PARSE_API_KEY)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode { //Request sent succesfully
+                if statusCode >= 200 && statusCode < 300 { //Response is ok
+                    let newData = data?.subdata(in: 5..<data!.count)
+                    print (String(data: newData!, encoding: .utf8)!)
+
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let object = try! decoder.decode(StudentLocation.self, from: newData!)
+                    //print(object.firstName!)
+                    self.userInfo.firstName = object.firstName
+                    self.userInfo.lastName = object.lastName
+
+                    print(self.userInfo.lastName!)
+                }
+            }
+            
+        }
+        task.resume()
+        
     }
     
     class Parser {

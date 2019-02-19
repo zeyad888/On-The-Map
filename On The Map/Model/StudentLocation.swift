@@ -30,8 +30,8 @@ extension StudentLocation {
 
 enum SLParam: String {
     case createdAt
-    case firstName
-    case lastName
+    case firstName = "first_name"
+    case lastName = "last_name"
     case latitude
     case longitude
     case mapString
