@@ -128,13 +128,13 @@
         <!--Table View Controller-->
         <scene sceneID="DKI-mm-i8z">
             <objects>
-                <tableViewController storyboardIdentifier="TableViewController" id="acU-5W-sEN" userLabel="Table View Controller" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TableViewController" id="acU-5W-sEN" userLabel="Table View Controller" customClass="TableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f0c-h8-jpa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="czQ-ZI-NSt" imageView="xiU-xz-mtb" style="IBUITableViewCellStyleDefault" id="rDd-BG-zS3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="studentCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentCell" textLabel="czQ-ZI-NSt" imageView="xiU-xz-mtb" style="IBUITableViewCellStyleDefault" id="rDd-BG-zS3" userLabel="studentCell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rDd-BG-zS3" id="Cef-5q-dzC">
@@ -154,6 +154,7 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="studentCell"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -162,6 +163,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="On The Map" id="WPI-or-mzh"/>
+                    <connections>
+                        <outlet property="tableView" destination="f0c-h8-jpa" id="bRA-bl-ccx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o2j-9J-wYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

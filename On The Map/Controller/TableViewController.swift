@@ -9,9 +9,9 @@
 import UIKit
 
 class TableViewController: ContainerViewController {
-    
-    
 
+
+    @IBOutlet var tableView: UITableView!
     override var locationsData: LocationsData? {
         didSet {
             guard let locationsData = locationsData else { return }
@@ -41,7 +41,22 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+//        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell")!
+        let location = self.locations[(indexPath as NSIndexPath).row]
+
+        cell.textLabel?.text = location.firstName
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let location = self.locations[(indexPath as NSIndexPath).row]
+        if let url = URL(string: location.mediaURL!),
+            UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
 }
