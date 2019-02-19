@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Cvk-WJ-fes">
-                                <rect key="frame" x="24" y="110" width="327" height="326"/>
+                                <rect key="frame" x="24" y="110" width="327" height="547"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pin" translatesAutoresizingMaskIntoConstraints="NO" id="oRR-xA-eH2" userLabel="Pin">
                                         <rect key="frame" x="118.5" y="0.0" width="90" height="90"/>
@@ -30,10 +30,10 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NuH-s0-BOV">
-                                        <rect key="frame" x="0.0" y="98" width="327" height="228"/>
+                                        <rect key="frame" x="0.0" y="98" width="327" height="449"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="2f3-ub-2Y0">
-                                                <rect key="frame" x="25.5" y="0.0" width="276" height="228"/>
+                                                <rect key="frame" x="25.5" y="0.0" width="276" height="449"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Stp-XQ-tMW">
                                                         <rect key="frame" x="10" y="0.0" width="256" height="44"/>
@@ -54,7 +54,7 @@
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ku-Pk-Sgv">
-                                                        <rect key="frame" x="10" y="132" width="256" height="30"/>
+                                                        <rect key="frame" x="10" y="132" width="256" height="44"/>
                                                         <color key="backgroundColor" red="0.41291278600692749" green="0.61455923318862915" blue="0.85100948810577393" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="UP0-di-gkD"/>
@@ -67,16 +67,16 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Z9g-Mh-uZb">
-                                                        <rect key="frame" x="10" y="184" width="256" height="44"/>
+                                                        <rect key="frame" x="10" y="198" width="256" height="251"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iO6-Xt-nTk">
-                                                                <rect key="frame" x="0.0" y="0.0" width="179" height="44"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="179" height="251"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEd-Yx-Qnw">
-                                                                <rect key="frame" x="202" y="0.0" width="54" height="44"/>
+                                                                <rect key="frame" x="202" y="0.0" width="54" height="251"/>
                                                                 <state key="normal" title="Sign Up"/>
                                                                 <connections>
                                                                     <action selector="signUpBtn:" destination="Fkl-7w-9bn" eventType="touchUpInside" id="Ryo-5a-G9o"/>
@@ -134,7 +134,6 @@
         <!--Table View Controller-->
         <scene sceneID="DKI-mm-i8z">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o2j-9J-wYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="acU-5W-sEN" userLabel="Table View Controller" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f0c-h8-jpa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -170,6 +169,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="On The Map" id="WPI-or-mzh"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o2j-9J-wYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3228" y="495"/>
         </scene>
@@ -361,7 +361,7 @@
         <!--Map View Controller-->
         <scene sceneID="W5W-2N-TM4">
             <objects>
-                <viewController id="7g2-bA-fUZ" userLabel="Map View Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="7g2-bA-fUZ" userLabel="Map View Controller" customClass="MapViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uTb-Tt-Yha">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -380,6 +380,9 @@
                         <viewLayoutGuide key="safeArea" id="mP1-zz-zP6"/>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="KVo-qt-atd"/>
+                    <connections>
+                        <outlet property="mapView" destination="f02-M4-r1C" id="JfV-jI-pnO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUQ-Ho-pKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
