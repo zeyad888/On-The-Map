@@ -61,8 +61,7 @@ class API {
     }
     
     static func getUserInfo(completion: @escaping (Error?)->Void) {
-        guard let url = URL(string: "\(APIConstants.PUBLIC_USER)\(self.userInfo.key ?? "")") else {
-            completion("Supplied url is invalid" as? Error)
+        guard let url = URL(string: "\(APIConstants.PUBLIC_USER)\(self.userInfo.key!)") else {
             return
         }
         
@@ -80,11 +79,8 @@ class API {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let object = try! decoder.decode(StudentLocation.self, from: newData!)
-                    //print(object.firstName!)
                     self.userInfo.firstName = object.firstName
                     self.userInfo.lastName = object.lastName
-
-                    print(self.userInfo.lastName!)
                 }
             }
             
@@ -137,6 +133,37 @@ class API {
             // Here you'll implement the logic for posting a student location
             // Please refere to the roadmap file and classroom for more details
             // Note that you'll need to send (uniqueKey, firstName, lastName) along with the post request. These information should be obtained upon logging in and they should be saved somewhere (Ex. AppDelegate or in this class)
+
+            guard let url = URL(string: "\(APIConstants.STUDENT_LOCATION)") else {
+                completion("Supplied url is invalid")
+                return
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.addValue(APIConstants.HeaderValues.PARSE_APP_ID, forHTTPHeaderField: APIConstants.HeaderKeys.PARSE_APP_ID)
+            request.addValue(APIConstants.HeaderValues.PARSE_API_KEY, forHTTPHeaderField: APIConstants.HeaderKeys.PARSE_API_KEY)
+            request.httpBody = "{\"uniqueKey\": \"\(location.uniqueKey!)\", \"firstName\": \"\(location.firstName!)\", \"lastName\": \"\(location.lastName!)\",\"mapString\": \"\(location.mapString!)\", \"mediaURL\": \"\(location.mediaURL!)\",\"latitude\": \(location.latitude!), \"longitude\": \(location.longitude!)}".data(using: .utf8)
+            let session = URLSession.shared
+            var errString: String?
+            let task = session.dataTask(with: request) { data, response, error in
+                if let statusCode = (response as? HTTPURLResponse)?.statusCode { //Request sent succesfully
+                    if statusCode >= 200 && statusCode < 300 { //Response is ok
+                        
+                    }else {
+                        errString = "Check internet connection"
+                    }
+                    DispatchQueue.main.async {
+                        completion(errString)
+                    }
+                }
+                
+            }
+            task.resume()
+            
+        
+            
+            
         }
         
     }
