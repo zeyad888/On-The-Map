@@ -14,7 +14,7 @@
         <!--Log In View Controller-->
         <scene sceneID="TzD-tw-EAT">
             <objects>
-                <viewController id="Fkl-7w-9bn" userLabel="Log In View Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="Fkl-7w-9bn" userLabel="Log In View Controller" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tGB-cM-d25">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ku-Pk-Sgv">
                                                         <rect key="frame" x="10" y="132" width="256" height="30"/>
@@ -63,7 +63,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="z9j-Ym-2pi" kind="show" identifier="Login" id="fP3-Wi-x5P"/>
+                                                            <action selector="loginBtn:" destination="Fkl-7w-9bn" eventType="touchUpInside" id="eb2-GP-pww"/>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Z9g-Mh-uZb">
@@ -78,6 +78,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEd-Yx-Qnw">
                                                                 <rect key="frame" x="202" y="0.0" width="54" height="44"/>
                                                                 <state key="normal" title="Sign Up"/>
+                                                                <connections>
+                                                                    <action selector="signUpBtn:" destination="Fkl-7w-9bn" eventType="touchUpInside" id="Ryo-5a-G9o"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -118,10 +121,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ShD-7s-tcW"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Stp-XQ-tMW" id="FD0-Oh-dMR"/>
+                        <outlet property="passwordTextField" destination="3Xx-6Y-rO6" id="fOG-i0-wfn"/>
+                        <segue destination="z9j-Ym-2pi" kind="show" identifier="Login" id="5Pz-3K-OGl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9d7-H6-uwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113" y="-22"/>
+            <point key="canvasLocation" x="146" y="-22"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="DKI-mm-i8z">
@@ -232,9 +240,6 @@
                                                         <state key="normal" title="Find Location">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <connections>
-                                                            <segue destination="RdY-eh-F1P" kind="show" identifier="mapSegue" id="5Qh-R3-qS6"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -271,6 +276,9 @@
                         <viewLayoutGuide key="safeArea" id="kFR-Dw-ScG"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="geL-ZC-qyd"/>
+                    <connections>
+                        <segue destination="RdY-eh-F1P" kind="show" identifier="mapSegue" id="igV-eS-kGA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpj-RL-8EM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
