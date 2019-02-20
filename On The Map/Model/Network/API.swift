@@ -144,18 +144,20 @@ class API {
             request.addValue(APIConstants.HeaderValues.PARSE_API_KEY, forHTTPHeaderField: APIConstants.HeaderKeys.PARSE_API_KEY)
             request.httpBody = "{\"uniqueKey\": \"\(location.uniqueKey ?? "")\", \"firstName\": \"\(location.firstName ?? "")\", \"lastName\": \"\(location.lastName ?? "")\",\"mapString\": \"\(location.mapString ?? "")\", \"mediaURL\": \"\(location.mediaURL ?? "")\",\"latitude\": \(location.latitude ?? 0), \"longitude\": \(location.longitude ?? 0)}".data(using: .utf8)
             let session = URLSession.shared
-            let task = session.dataTask(with: request) { data, response, error in
-                
-                    DispatchQueue.main.async {
+            let task = session.dataTask(with: request) { data, response, error in                    var errString: String?
+                if let statusCode = (response as? HTTPURLResponse)?.statusCode { //Request sent succesfully
+                    if statusCode >= 200 && statusCode < 300 { //Response is ok
+                            
+                    }else {
+                        errString = "Couldn't find any location with the provided address, try to change the address"
                     }
                 }
                 
-            
+                DispatchQueue.main.async {
+                    completion(errString)
+                }
+            }
             task.resume()
-            
-        
-            
-            
         }
         
     }

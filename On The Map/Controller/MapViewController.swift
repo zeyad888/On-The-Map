@@ -23,6 +23,8 @@ class MapViewController: ContainerViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
+
         
     }
     

@@ -11,6 +11,7 @@ import UIKit
 class ContainerViewController: UIViewController {
     
     var locationsData: LocationsData?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +40,31 @@ class ContainerViewController: UIViewController {
     }
     
     @objc private func logoutTapped(_ sender: Any) {
-        // Here you should call the corresponding API for deleting the session, and you should go back to Login screen on success
-        print("Logout not implemented yet")
+        
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" {
+                xsrfCookie = cookie
+            }
+        }
+            
+        guard let cookie = xsrfCookie else {   return   }
+        guard let url = URL(string: APIConstants.SESSION) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.delete.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(cookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in}
+        task.resume()
+        self.dismiss(animated: true, completion: nil)
+
     }
-    
+
     private func loadStudentLocations() {
         API.Parser.getStudentLocations { (data) in
             guard let data = data else {
