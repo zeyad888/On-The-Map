@@ -46,19 +46,17 @@ class AddLocationViewController: UIViewController {
     }
     
     private func geocodeCoordinates(_ studentLocation: StudentLocation) {
-        
+
         let ai = self.startAnActivityIndicator()
-        // TODO: Use CLGeocoder's function named `geocodeAddressString` to convert location's `mapString` to coordinates
         CLGeocoder().geocodeAddressString(studentLocation.mapString!) { (placeMarks, err) in
-            // TODO: Call `ai.stopAnimating()` first thing in the completionHandler
             ai.stopAnimating()
-            // TODO: Extract the first location from Place Marks array
-            guard let firstLocation = placeMarks?.first?.location else { return }
-            // TODO: Copy studentLocation into a new object and save latitude and longitude in the new object's properties `latitude` and `longitude`
+            guard let firstLocation = placeMarks?.first?.location else {
+                self.showAlert(title: "Error", message: "Couldn't find any location with the provided address, try to change the address")
+                return
+            }
             var location = studentLocation
             location.latitude = firstLocation.coordinate.latitude
             location.longitude = firstLocation.coordinate.longitude
-            // TODO: Call performSegue using `mapSegue` identifier and pass `location` as the sender
             self.performSegue(withIdentifier: "mapSegue", sender: location)
         }
         
