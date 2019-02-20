@@ -74,7 +74,6 @@ class API {
             if let statusCode = (response as? HTTPURLResponse)?.statusCode { //Request sent succesfully
                 if statusCode >= 200 && statusCode < 300 { //Response is ok
                     let newData = data?.subdata(in: 5..<data!.count)
-                    print (String(data: newData!, encoding: .utf8)!)
 
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -143,22 +142,15 @@ class API {
             request.httpMethod = HTTPMethod.post.rawValue
             request.addValue(APIConstants.HeaderValues.PARSE_APP_ID, forHTTPHeaderField: APIConstants.HeaderKeys.PARSE_APP_ID)
             request.addValue(APIConstants.HeaderValues.PARSE_API_KEY, forHTTPHeaderField: APIConstants.HeaderKeys.PARSE_API_KEY)
-            request.httpBody = "{\"uniqueKey\": \"\(location.uniqueKey!)\", \"firstName\": \"\(location.firstName!)\", \"lastName\": \"\(location.lastName!)\",\"mapString\": \"\(location.mapString!)\", \"mediaURL\": \"\(location.mediaURL!)\",\"latitude\": \(location.latitude!), \"longitude\": \(location.longitude!)}".data(using: .utf8)
+            request.httpBody = "{\"uniqueKey\": \"\(location.uniqueKey ?? "")\", \"firstName\": \"\(location.firstName ?? "")\", \"lastName\": \"\(location.lastName ?? "")\",\"mapString\": \"\(location.mapString ?? "")\", \"mediaURL\": \"\(location.mediaURL ?? "")\",\"latitude\": \(location.latitude ?? 0), \"longitude\": \(location.longitude ?? 0)}".data(using: .utf8)
             let session = URLSession.shared
-            var errString: String?
             let task = session.dataTask(with: request) { data, response, error in
-                if let statusCode = (response as? HTTPURLResponse)?.statusCode { //Request sent succesfully
-                    if statusCode >= 200 && statusCode < 300 { //Response is ok
-                        
-                    }else {
-                        errString = "Check internet connection"
-                    }
+                
                     DispatchQueue.main.async {
-                        completion(errString)
                     }
                 }
                 
-            }
+            
             task.resume()
             
         

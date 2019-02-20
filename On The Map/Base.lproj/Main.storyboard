@@ -35,7 +35,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="2f3-ub-2Y0">
                                                 <rect key="frame" x="0.0" y="0.0" width="276" height="242"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zeyad888@outlook.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Stp-XQ-tMW">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Stp-XQ-tMW">
                                                         <rect key="frame" x="10" y="0.0" width="256" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="M5z-1G-aiY"/>
@@ -44,7 +44,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hnouf8646" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Xx-6Y-rO6">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Xx-6Y-rO6">
                                                         <rect key="frame" x="10" y="66" width="256" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="OVx-hZ-yx8"/>
@@ -174,7 +174,7 @@
         <!--Add Location-->
         <scene sceneID="KMI-ta-Ah2">
             <objects>
-                <navigationController id="7iM-kp-7ET" userLabel="Add Location" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AddLocationNavigationController" id="7iM-kp-7ET" userLabel="Add Location" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="icon_back-arrow" id="Qfy-AZ-37Q">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -190,7 +190,7 @@
         <!--Add Location View Controller-->
         <scene sceneID="Zl9-rW-s59">
             <objects>
-                <viewController id="sWY-cM-mfs" userLabel="Add Location View Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddLocationViewController" id="sWY-cM-mfs" userLabel="Add Location View Controller" customClass="AddLocationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4TG-lI-uwC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,7 +198,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eeq-sx-dCi">
                                 <rect key="frame" x="32" y="126" width="311" height="274"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pin" translatesAutoresizingMaskIntoConstraints="NO" id="ifq-50-ogC" userLabel="Pin">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="ifq-50-ogC" userLabel="Pin">
                                         <rect key="frame" x="110.5" y="0.0" width="90" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="NmI-mg-pxk"/>
@@ -238,6 +238,9 @@
                                                         <state key="normal" title="Find Location">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="findLocationButton:" destination="sWY-cM-mfs" eventType="touchUpInside" id="6dD-7R-9XK"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -275,6 +278,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="geL-ZC-qyd"/>
                     <connections>
+                        <outlet property="locationTextField" destination="EnE-gq-iI3" id="gXt-7l-4GL"/>
+                        <outlet property="mediaLinkTextField" destination="fVg-y5-kPa" id="zs1-HK-D5U"/>
                         <segue destination="RdY-eh-F1P" kind="show" identifier="mapSegue" id="igV-eS-kGA"/>
                     </connections>
                 </viewController>
@@ -285,11 +290,14 @@
         <!--Confirm Location View Controller-->
         <scene sceneID="MeK-i9-UEX">
             <objects>
-                <viewController id="RdY-eh-F1P" userLabel="Confirm Location View Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmLocationViewController" id="RdY-eh-F1P" userLabel="Confirm Location View Controller" customClass="ConfirmLocationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8vf-Pm-Ccx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lx1-e7-tIc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owM-EQ-gil">
                                 <rect key="frame" x="16" y="583" width="343" height="44"/>
                                 <color key="backgroundColor" red="0.41291278599999998" green="0.61455923320000005" blue="0.85100948809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -299,10 +307,10 @@
                                 <state key="normal" title="Finish">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="finishButton:" destination="RdY-eh-F1P" eventType="touchUpInside" id="1EB-DE-ocm"/>
+                                </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lx1-e7-tIc">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -317,6 +325,9 @@
                         <viewLayoutGuide key="safeArea" id="nDz-za-U9D"/>
                     </view>
                     <navigationItem key="navigationItem" title="Confirm Location" id="7ek-0D-7Ra" userLabel="Confirm Location"/>
+                    <connections>
+                        <outlet property="mapView" destination="lx1-e7-tIc" id="HOV-SK-jEO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bav-sq-QWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -412,5 +423,6 @@
         <image name="icon_mapview-deselected" width="75" height="50"/>
         <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>
+        <image name="icon_world" width="52" height="67"/>
     </resources>
 </document>
