@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         let email = emailTextField.text
         let password = passwordTextField.text
         
-        if (email!.isEmpty) || (password!.isEmpty) {
+        if email!.isEmpty || password!.isEmpty {
             self.showAlert(title: "Fill the required fields", message: "Please fill both the email and password")
             
         } else {
